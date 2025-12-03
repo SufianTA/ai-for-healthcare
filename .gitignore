@@ -1,0 +1,27 @@
+# Node
+node_modules
+npm-debug.log
+.yarn
+.next
+.expo
+mobile/assets/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Unity (basic)
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+Logs/
+UserSettings/
+*.unitypackage
