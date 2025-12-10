@@ -42,7 +42,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <header className="shell">
               <nav className="nav">
                 <Link className="brand" href="/">
-                  SurgiTrack
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden>
+                      <circle cx="12" cy="12" r="11" stroke="#0ea5e9" strokeWidth="2" />
+                      <path d="M8 11.5h8M12 7v9" stroke="#0ea5e9" strokeWidth="2" strokeLinecap="round" />
+                    </svg>
+                    SurgiTrack
+                  </span>
                 </Link>
                 <div className="nav-links">
                   {links.map((link) => (

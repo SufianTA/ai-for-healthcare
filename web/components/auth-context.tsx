@@ -44,7 +44,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (saved) {
       setToken(saved);
       fetchProfile(saved).then((profile) => {
-        setUser(profile);
+        if (profile) {
+          setUser(profile);
+        } else {
+          // Token is stale or invalid; clear it so UI stops firing 401s.
+          persistToken(null);
+          setToken(null);
+          setUser(null);
+        }
         setLoading(false);
       });
     } else {
@@ -63,7 +70,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setToken(response.access_token);
     persistToken(response.access_token);
     const profile = await fetchProfile(response.access_token);
-    setUser(profile);
+    if (profile) {
+      setUser(profile);
+    } else {
+      // If profile cannot be fetched, clear token to avoid confusing 401 loops.
+      logout();
+      throw new Error('Login succeeded but profile could not be loaded. Please try again.');
+    }
   };
 
   const register = async (email: string, password: string, fullName?: string) => {

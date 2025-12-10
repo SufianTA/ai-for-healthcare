@@ -5,34 +5,49 @@ import Image from 'next/image';
 type Founder = {
   name: string;
   role: string;
-  blurb: string;
+  strengths: string;
+  archetype: string;
+  relevance: string;
+  filled: string;
   avatar: string;
 };
 
 const founders: Founder[] = [
   {
     name: 'Sufian Aldogom',
-    role: 'Clinical Ops & Product',
-    blurb: 'Bridges OR workflows with product design to keep residents focused on the craft.',
-    avatar: 'https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=240&q=60',
+    role: 'Development Lead',
+    strengths: 'CSAIL, software development, implementation',
+    archetype: 'The Hacker',
+    relevance: 'Required for MVP build',
+    filled: 'Yes',
+    avatar: 'https://api.dicebear.com/7.x/personas/svg?seed=Sufian',
   },
   {
     name: 'Alok Gupta',
-    role: 'Technical Lead',
-    blurb: 'Builds the scoring engine and keeps the platform resilient for high-stakes training.',
-    avatar: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=240&q=60',
+    role: 'Clinical Founder',
+    strengths: 'Surgeon, Medical Educator',
+    archetype: 'Domain Expert',
+    relevance: 'Required for credibility and surgical network',
+    filled: 'Yes',
+    avatar: 'https://api.dicebear.com/7.x/personas/svg?seed=Alok',
   },
   {
     name: 'Andres Hernandez',
-    role: 'Data & Analytics',
-    blurb: 'Turns raw attempts into actionable feedback and transparent progression charts.',
-    avatar: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=240&q=60',
+    role: 'Product + UX Lead',
+    strengths: 'Microsoft alum, EMBA’26, UX & Gamification from Xbox ecosystem',
+    archetype: 'The Architect',
+    relevance: 'Required for UX',
+    filled: 'Yes',
+    avatar: 'https://api.dicebear.com/7.x/personas/svg?seed=Andres',
   },
   {
     name: 'Sharjeel Chaudhry',
-    role: 'XR & Simulation',
-    blurb: 'Explores VR/AR skill drills so practice feels closer to the operating room.',
-    avatar: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=240&q=60',
+    role: 'Strategy Lead',
+    strengths: 'Surgical resident, consulting & business strategy, med-device founder',
+    archetype: 'The Hustler',
+    relevance: 'Required for novice learner perspective',
+    filled: 'Yes',
+    avatar: 'https://api.dicebear.com/7.x/personas/svg?seed=Sharjeel',
   },
 ];
 
@@ -47,17 +62,20 @@ export default function FoundersPage() {
         </p>
       </div>
       {founders.map((f) => (
-        <div key={f.name} className="card" style={{ display: 'grid', gap: 12 }}>
+        <div key={f.name} className="card" style={{ display: 'grid', gap: 10 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            <div style={{ position: 'relative', width: 54, height: 54, borderRadius: '50%', overflow: 'hidden' }}>
-              <Image src={f.avatar} alt={f.name} fill sizes="54px" />
+            <div style={{ position: 'relative', width: 56, height: 56, borderRadius: '50%', overflow: 'hidden', border: '1px solid var(--border)' }}>
+              <Image src={f.avatar} alt={f.name} fill sizes="56px" />
             </div>
             <div>
               <strong>{f.name}</strong>
               <div className="muted" style={{ fontSize: 13 }}>{f.role}</div>
             </div>
           </div>
-          <p style={{ margin: 0 }}>{f.blurb}</p>
+          <p style={{ margin: 0 }}><strong>Strengths:</strong> {f.strengths}</p>
+          <p style={{ margin: 0 }}><strong>Archetype:</strong> {f.archetype}</p>
+          <p style={{ margin: 0 }}><strong>Relevance:</strong> {f.relevance}</p>
+          <p style={{ margin: 0 }}><strong>Role filled:</strong> {f.filled}</p>
         </div>
       ))}
     </div>
