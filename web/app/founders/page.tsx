@@ -1,7 +1,5 @@
 'use client';
 
-import Image from 'next/image';
-
 type Founder = {
   name: string;
   role: string;
@@ -20,7 +18,7 @@ const founders: Founder[] = [
     archetype: 'The Hacker',
     relevance: 'Required for MVP build',
     filled: 'Yes',
-    avatar: 'https://api.dicebear.com/7.x/personas/svg?seed=Sufian',
+    avatar: 'SA',
   },
   {
     name: 'Alok Gupta',
@@ -29,7 +27,7 @@ const founders: Founder[] = [
     archetype: 'Domain Expert',
     relevance: 'Required for credibility and surgical network',
     filled: 'Yes',
-    avatar: 'https://api.dicebear.com/7.x/personas/svg?seed=Alok',
+    avatar: 'AG',
   },
   {
     name: 'Andres Hernandez',
@@ -38,7 +36,7 @@ const founders: Founder[] = [
     archetype: 'The Architect',
     relevance: 'Required for UX',
     filled: 'Yes',
-    avatar: 'https://api.dicebear.com/7.x/personas/svg?seed=Andres',
+    avatar: 'AH',
   },
   {
     name: 'Sharjeel Chaudhry',
@@ -47,9 +45,31 @@ const founders: Founder[] = [
     archetype: 'The Hustler',
     relevance: 'Required for novice learner perspective',
     filled: 'Yes',
-    avatar: 'https://api.dicebear.com/7.x/personas/svg?seed=Sharjeel',
+    avatar: 'SC',
   },
 ];
+
+function Avatar({ label }: { label: string }) {
+  return (
+    <div
+      style={{
+        width: 56,
+        height: 56,
+        borderRadius: '50%',
+        background: 'linear-gradient(145deg, rgba(14,165,233,0.18), rgba(14,165,233,0.32))',
+        border: '1px solid var(--border)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontWeight: 700,
+        color: '#0f172a',
+      }}
+      aria-hidden
+    >
+      {label}
+    </div>
+  );
+}
 
 export default function FoundersPage() {
   return (
@@ -64,9 +84,7 @@ export default function FoundersPage() {
       {founders.map((f) => (
         <div key={f.name} className="card" style={{ display: 'grid', gap: 10 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            <div style={{ position: 'relative', width: 56, height: 56, borderRadius: '50%', overflow: 'hidden', border: '1px solid var(--border)' }}>
-              <Image src={f.avatar} alt={f.name} fill sizes="56px" />
-            </div>
+            <Avatar label={f.avatar} />
             <div>
               <strong>{f.name}</strong>
               <div className="muted" style={{ fontSize: 13 }}>{f.role}</div>
