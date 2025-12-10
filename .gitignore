@@ -16,6 +16,9 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
+# Local media assets
+surgery-bg.mp4
+
 # Unity (basic)
 [Ll]ibrary/
 [Tt]emp/

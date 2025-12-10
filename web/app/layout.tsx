@@ -29,12 +29,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           muted
           loop
           playsInline
-          poster="https://images.unsplash.com/photo-1580281780460-82d277b0e3f9?auto=format&fit=crop&w=1600&q=80"
+          poster="/surgery-bg.mp4"
         >
-          <source
-            src="https://cdn.coverr.co/videos/coverr-operating-theatre-9638/1080p.mp4"
-            type="video/mp4"
-          />
+          <source src="/surgery-bg.mp4" type="video/mp4" />
         </video>
         <div className="video-overlay" aria-hidden />
         <Providers>
