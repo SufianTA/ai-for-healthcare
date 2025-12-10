@@ -16,12 +16,27 @@ const links = [
   { href: '/tasks', label: 'Tasks' },
   { href: '/dashboard', label: 'Dashboard' },
   { href: '/leaderboard', label: 'Leaderboard' },
+  { href: '/founders', label: 'Founders' },
 ];
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body className={inter.className}>
+        <video
+          className="background-video"
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="https://images.unsplash.com/photo-1582719478123-2f2df9429b0b?auto=format&fit=crop&w=1400&q=80"
+        >
+          <source
+            src="https://cdn.coverr.co/videos/coverr-surgeons-preparing-1742/1080p.mp4"
+            type="video/mp4"
+          />
+        </video>
+        <div className="video-overlay" aria-hidden />
         <Providers>
           <div className="bg-grid">
             <header className="shell">
