@@ -33,3 +33,9 @@ def run_seed() -> None:
 @app.get("/")
 def root():
     return {"status": "ok"}
+
+
+@app.get("/health")
+def health():
+    # Lightweight readiness endpoint for Render health checks.
+    return {"status": "ok"}
