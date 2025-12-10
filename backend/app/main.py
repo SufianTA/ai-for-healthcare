@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from .db import Base, engine
 from .routes import auth, tasks, attempts, error_types, leaderboard
+from . import seed
 
 Base.metadata.create_all(bind=engine)
 
@@ -21,6 +22,12 @@ app.include_router(tasks.router, prefix="/tasks", tags=["tasks"])
 app.include_router(attempts.router, prefix="/attempts", tags=["attempts"])
 app.include_router(error_types.router, prefix="/error-types", tags=["error-types"])
 app.include_router(leaderboard.router, prefix="/leaderboard", tags=["leaderboard"])
+
+
+@app.on_event("startup")
+def run_seed() -> None:
+    # Ensure demo data exists in SQLite even without shell access.
+    seed.seed()
 
 
 @app.get("/")
