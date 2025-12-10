@@ -1,7 +1,3 @@
-databases:
-  - name: surgitrack-db
-    plan: free
-
 services:
   - name: surgitrack-api
     type: web
@@ -11,9 +7,7 @@ services:
     dockerCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: DATABASE_URL
-        fromDatabase:
-          name: surgitrack-db
-          property: connectionString
+        value: sqlite:///./surgitrack.db
       - key: JWT_SECRET
         generateValue: true
       - key: JWT_ALGORITHM
@@ -28,6 +22,5 @@ services:
     buildCommand: npm install && npm run build
     startCommand: npm run start
     envVars:
-      # Replace the value after the API deploy gives you its host, e.g. https://surgitrack-api.onrender.com
       - key: NEXT_PUBLIC_API_BASE_URL
         value: https://REPLACE_WITH_API_HOST
