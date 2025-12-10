@@ -29,10 +29,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           muted
           loop
           playsInline
-          poster="https://images.unsplash.com/photo-1504814532849-92766102f78c?auto=format&fit=crop&w=1600&q=80"
+          poster="https://images.unsplash.com/photo-1580281780460-82d277b0e3f9?auto=format&fit=crop&w=1600&q=80"
         >
           <source
-            src="https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4"
+            src="https://cdn.coverr.co/videos/coverr-operating-theatre-9638/1080p.mp4"
             type="video/mp4"
           />
         </video>
