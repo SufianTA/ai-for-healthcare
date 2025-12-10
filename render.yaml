@@ -1,6 +1,7 @@
 services:
   - name: surgitrack-api
     type: web
+    plan: free          # <— forces free tier
     env: docker
     rootDir: backend
     dockerfilePath: Dockerfile
@@ -17,6 +18,7 @@ services:
 
   - name: surgitrack-web
     type: web
+    plan: free          # <— forces free tier
     env: node
     rootDir: web
     buildCommand: npm install && npm run build
