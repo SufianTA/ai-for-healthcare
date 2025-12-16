@@ -9,12 +9,6 @@ type Founder = {
 
 const founders: Founder[] = [
   {
-    name: 'Sufian Aldogom',
-    role: 'Development Lead',
-    summary: 'CSAIL-trained builder focused on full-stack implementation and keeping the MVP moving.',
-    avatar: 'SA',
-  },
-  {
     name: 'Alok Gupta',
     role: 'Clinical Founder',
     summary: 'Surgeon and medical educator ensuring clinical rigor and credibility.',
@@ -23,8 +17,14 @@ const founders: Founder[] = [
   {
     name: 'Andres Hernandez',
     role: 'Product + UX Lead',
-    summary: 'Microsoft alum and EMBA’26 bringing UX, gamification, and product polish.',
+    summary: 'Microsoft alum and EMBA T26 bringing UX, gamification, and product polish.',
     avatar: 'AH',
+  },
+  {
+    name: 'Sufian Aldogom',
+    role: 'Development Lead',
+    summary: 'Senior engineering manager, Microsoft and NASA alum, leading development delivery.',
+    avatar: 'SA',
   },
   {
     name: 'Sharjeel Chaudhry',

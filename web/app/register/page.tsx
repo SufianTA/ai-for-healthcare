@@ -19,7 +19,7 @@ export default function RegisterPage() {
     setMessage(null);
     try {
       await register(email, password, fullName);
-      setMessage('Account created. Redirecting…');
+      setMessage('Account created. Redirecting...');
       setTimeout(() => router.push('/dashboard'), 350);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Registration failed');

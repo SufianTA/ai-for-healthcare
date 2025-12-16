@@ -29,6 +29,10 @@ def get_password_hash(password: str) -> str:
 
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -> str:
     to_encode = data.copy()
+    # JWT spec expects the subject (sub) to be a string. Cast here to avoid
+    # jose.exceptions.JWTClaimsError when an integer user id is provided.
+    if "sub" in to_encode:
+        to_encode["sub"] = str(to_encode["sub"])
     expire = datetime.utcnow() + (expires_delta or timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES))
     to_encode.update({"exp": expire})
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)

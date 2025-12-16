@@ -1,11 +1,11 @@
 import './globals.css';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
-import { Inter } from 'next/font/google';
+import { Manrope } from 'next/font/google';
 import { Providers } from './providers';
 import { UserBadge } from '../components/user-badge';
 
-const inter = Inter({ subsets: ['latin'] });
+const manrope = Manrope({ subsets: ['latin'], display: 'swap' });
 
 export const metadata = {
   title: 'SurgiTrack',
@@ -22,7 +22,7 @@ const links = [
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={manrope.className}>
         <video
           className="background-video"
           autoPlay
@@ -59,8 +59,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             </header>
             <main className="shell main-shell">{children}</main>
             <footer className="shell footer">
-              <div className="muted">Built for surgical skills labs • FastAPI + Next.js</div>
-              <div className="muted">Secure scoring, attempt history, and sharable leaderboards</div>
+              <div className="muted">Built for surgical skills labs | FastAPI + Next.js</div>
+              <div className="muted">Secure scoring, attempt history, and shareable leaderboards</div>
             </footer>
           </div>
         </Providers>

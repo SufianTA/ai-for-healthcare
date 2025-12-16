@@ -18,7 +18,7 @@ export default function LoginPage() {
     setMessage(null);
     try {
       await login(email, password);
-      setMessage('Logged in. Redirecting to your dashboard…');
+      setMessage('Logged in. Redirecting to your dashboard...');
       setTimeout(() => router.push('/dashboard'), 350);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Login failed');
