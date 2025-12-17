@@ -94,7 +94,7 @@ def create_attempt(
         time_seconds=attempt.time_seconds,
         score=attempt.score,
         proficiency=attempt.proficiency,
-        errors=[schemas.ErrorTypeOut.model_validate(err) for err in error_types],
+        errors=[schemas.ErrorTypeOut.model_validate(err, from_attributes=True) for err in error_types],
     )
 
 
@@ -106,7 +106,7 @@ def list_my_attempts(
     attempts = db.query(models.Attempt).filter(models.Attempt.user_id == current_user.id).all()
     results = []
     for attempt in attempts:
-        errors = [schemas.ErrorTypeOut.model_validate(ae.error_type) for ae in attempt.errors]
+        errors = [schemas.ErrorTypeOut.model_validate(ae.error_type, from_attributes=True) for ae in attempt.errors]
         results.append(
             schemas.AttemptOut(
                 id=attempt.id,
