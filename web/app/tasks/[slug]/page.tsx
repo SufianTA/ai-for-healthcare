@@ -158,7 +158,8 @@ export default function TaskDetail({ params }: { params: { slug: string } }) {
         ended_at: finish.toISOString(),
         errors: selectedErrorIds.map((id) => ({ error_type_id: id })),
       };
-      const res = await apiPost<AttemptResponse>('/attempts', payload, authToken);
+      // Use trailing slash to avoid CORS preflight redirect issues on some hosts.
+      const res = await apiPost<AttemptResponse>('/attempts/', payload, authToken);
       setResult(res);
       setStatus(`Score: ${res.score}`);
       setErrorMessage(null);
