@@ -1,3 +1,5 @@
+import os
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -9,9 +11,23 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="SurgiTrack API")
 
+# Allow explicit origins (needed when allow_credentials=True).
+default_origins = [
+    # Local dev
+    "http://localhost:3000",
+    "http://localhost:8000",
+    "http://127.0.0.1:3000",
+    "http://127.0.0.1:8000",
+    # Render deployments (frontend)
+    "https://surgitrack-web.onrender.com",
+    "https://surgitrack-web-l0vc.onrender.com",
+]
+env_origins = os.getenv("CORS_ALLOW_ORIGINS")
+allow_origins = [o.strip() for o in env_origins.split(",")] if env_origins else default_origins
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=allow_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
