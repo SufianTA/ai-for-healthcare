@@ -5,6 +5,9 @@ npm-debug.log
 .next
 .expo
 mobile/assets/
+mobile/android/app/*.keystore
+mobile/android/app/*.jks
+mobile/android/keystore.properties
 
 # Python
 __pycache__/

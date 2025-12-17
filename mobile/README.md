@@ -13,7 +13,7 @@ A React Native + Expo client that mirrors the web experience: auth (login/regist
    ```
 2. Point the app at your API host:
    * Easiest: set `EXPO_PUBLIC_API_BASE_URL=https://your-api-host` in `.env` or your shell.
-   * Alternative: edit `app.json` → `expo.extra.apiBase`.
+   * Alternative: edit `app.json` -> `expo.extra.apiBase`.
 3. Run the dev server:
    ```bash
    npm start
@@ -22,31 +22,34 @@ A React Native + Expo client that mirrors the web experience: auth (login/regist
 
 ## Features
 
-* **Auth** — Login/Register flows persist JWT using SecureStore/AsyncStorage.
-* **Dashboard** — Displays proficiency progress and best scores per task.
-* **Tasks** — Browse tasks, drill into details, start/stop a timer, pick a standard, select error checkboxes, and submit an attempt.
-* **Leaderboard** — Global ranking from `/leaderboard/global`.
-* **Profile** — View account details and sign out.
+- Auth: login/register flows persist JWT using SecureStore/AsyncStorage.
+- Dashboard: displays proficiency progress and best scores per task.
+- Tasks: browse tasks, drill into details, start/stop a timer, pick a standard, select error checkboxes, and submit an attempt.
+- Leaderboard: global ranking from `/leaderboard/global`.
+- Profile: view account details and sign out.
 
-## Preparing for Google Play
+## Preparing for Google Play (native Gradle build)
 
-1. Install the EAS CLI and log in:
+1. Set your production API host (required for a usable build):
    ```bash
-   npm install -g eas-cli
-   eas login
+   # PowerShell example
+   $env:EXPO_PUBLIC_API_BASE_URL="https://your-api-host"
    ```
-2. Configure builds (once):
+2. Provide release signing values (required for Play uploads):
+   * Preferred: export env vars `ANDROID_KEYSTORE_PATH`, `ANDROID_KEYSTORE_PASSWORD`, `ANDROID_KEY_ALIAS`, `ANDROID_KEY_PASSWORD`.
+   * Or copy `android/keystore.properties.example` to `android/keystore.properties` and fill in the same values (file is git-ignored).
+   * Place your upload keystore at the path you set above (default: `android/app/upload-keystore.jks`).
+3. Build the Play bundle (AAB):
    ```bash
-   eas build:configure
+   npm run android:release
    ```
-3. Build a production Android artifact (uses `app.json` + `EXPO_PUBLIC_API_BASE_URL`):
-   ```bash
-   EXPO_PUBLIC_API_BASE_URL=https://your-api-host eas build -p android --profile production
-   ```
-4. Upload the generated `.aab` to the Google Play Console, complete policy forms, and publish.
-5. **Branding assets:** add your own app icon and splash artwork under `mobile/assets/` (ignored by Git) and wire them into `app.json` before shipping to Play.
+   Outputs:
+   * AAB: `android/app/build/outputs/bundle/release/app-release.aab` (upload this to Play Console)
+   * APK: `android/app/build/outputs/apk/release/app-release.apk` (for side-loading/testing)
+4. Upload the `.aab` to the Google Play Console, complete policy forms, and publish.
+5. Branding assets: add your own app icon and splash artwork under `mobile/assets/` (ignored by Git) and wire them into `app.json` before shipping to Play.
 
 ## Notes
 
-* The timer uses device time to generate `started_at`/`ended_at` timestamps for the FastAPI scoring endpoint.
-* All API helpers live in `src/lib/api.ts`; adjust once if your backend URL changes.
+- The timer uses device time to generate `started_at`/`ended_at` timestamps for the FastAPI scoring endpoint.
+- All API helpers live in `src/lib/api.ts`; adjust once if your backend URL changes.
